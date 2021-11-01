@@ -4,6 +4,11 @@
 
 <head>
   <meta charset="utf-8">
+  <style>
+    .error { color: red; font-weight: bold;}
+    .hidden {display: none;}
+    .show {display: block;}
+  </style>
 
   <title>My Page</title>
 
@@ -11,14 +16,20 @@
 
 <body>
   <h1 id="header">Welcome to my page!</h1>
-  <p>Please enter your name:</p>
-  <form>
+  <form>    
+    <label>Please enter your name:</label>
     <input type="text" placeholder="Name here" id="name" />
+    <p class="error hidden" id="error">Please enter your name.</p>
     <button type="submit" id="submit">Submit</button>
   </form>
   <script>
     document.getElementById('submit').onclick = event => {
       event.preventDefault()
+      if ( document.getElementById('name').value == ''){
+        const errorElement = document.getElementById('error');
+        errorElement.classList.toggle('hidden');
+        errorElement.classList.toggle('show');
+      }
       fetch('/data')
         .then(res => res.text())
         .then(response => alert(response))
