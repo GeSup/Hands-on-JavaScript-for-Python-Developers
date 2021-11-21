@@ -1,4 +1,6 @@
-import Highcharts from 'highcharts'
+import /*Highcharts from*/ ('highcharts/es-modules/highcharts.src.js').then(({default: Highcharts}) => {
+
+
 // Create the chart 
 
 Highcharts.chart('container', {
@@ -22,3 +24,4 @@ Highcharts.chart('container', {
     data: [5, 7, 3]
   }]
 });
+})
